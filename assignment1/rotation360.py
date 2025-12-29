@@ -158,11 +158,13 @@ class Rotate360(Node):
             X = marker.pose.position.x
             Y = marker.pose.position.y
             Z = marker.pose.position.z
+            Z_marker = marker.pose.position.z + self.marker_size / 2.0
 
             u = int(self.fx * X / Z + cx)
             v = int(self.fy * Y / Z + cy)
 
-            R = int(self.fx * (self.marker_size * math.sqrt(2) / 2) / Z)
+            #R = int(self.fx * (self.marker_size * math.sqrt(2) / 2) / Z)
+            R = int(self.fx * (self.marker_size / 2.0) / Z_marker)
 
             cv2.circle(img, (u, v), R, (0, 0, 255), 2)
 
