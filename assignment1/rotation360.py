@@ -93,6 +93,8 @@ class Rotate360(Node):
 
     def aruco_callback(self, msg: ArucoDetection):
 
+        self.current_markers = msg.markers
+
         for marker in msg.markers:
             marker_id = marker.marker_id
 
@@ -139,6 +141,7 @@ class Rotate360(Node):
 
             self.publisher_.publish(Twist())
             time.sleep(0.5)
+            print("ok1")
 
             #CENTRO ORIZZONTALMENTE IL MARKER (POSE 3D)
             while rclpy.ok():
@@ -163,6 +166,7 @@ class Rotate360(Node):
 
             self.publisher_.publish(Twist())
             time.sleep(0.5)
+            print("ok2")
 
             #DISEGNO CERCHIO ROSSO
             if self.current_image is None or marker is None:
@@ -179,14 +183,17 @@ class Rotate360(Node):
 
             img_out = self.current_image.copy()
             cv2.circle(img_out, center, R_px, (0, 0, 255), 2)
+            print("ok3")
 
             #PUBBLICAZIONE IMMAGINE
             img_msg = self.bridge.cv2_to_imgmsg(img_out, encoding="bgr8")
             self.image_pub.publish(img_msg)
+            print("ok4")
 
             #POPUP IMMAGINE
             cv2.imshow("Circle Marker", img_out)
             cv2.waitKey(1)
+            print("ok5")
 
             time.sleep(1.0)
 
