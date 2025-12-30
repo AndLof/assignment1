@@ -47,7 +47,7 @@ class Rotate360(Node):
         # CAMERA PARAMS (costanti)
         self.fx = 381.36
         self.fy = 381.36
-        self.marker_size = 0.20  # lato marker [m]
+        self.marker_size = 0.13  # lato marker [m]
 
     # ---------------- CALLBACK ---------------- #
 
